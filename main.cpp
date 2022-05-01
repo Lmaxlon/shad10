@@ -24,6 +24,7 @@ int main()
           }*/
           //3-9 11-17 19-25 27-30
      for ( int i = 0; i < num; i++){
+              if ( arr[i][0] == *"X") counter++;
               for (int j = 3; j < 9; j++){
                        if (arr[i][j] == *"X" ){
                            counter++;
