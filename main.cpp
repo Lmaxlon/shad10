@@ -1,5 +1,4 @@
 #include <iostream>
-#include "math.h"
 
 
 int main()
@@ -23,36 +22,30 @@ int main()
               }
               std::cout << std::endl;//типа вывод для проверки
           }*/
+          //3-9 11-17 19-25 27-30
      for ( int i = 0; i < num; i++){
-              for (int j = 0; j < column; j++){
-                  if (arr[i][j] != *"." ){
-                      for (int m1 = 3; m1 < 9; m1++){
-                          if (arr[i][m1] != *"X" ){
-                              free_places++;
-                          } else counter++;
-                      }
-                      for (int m2 = 11; m2 < 17; m2++){
-                          if (arr[i][m2] != *"X" ){
-                              free_places++;
-                          } else counter++;
-                      }
-                      for (int m3 = 19; m3 < 25; m3++){
-                          if (arr[i][m3] != *"X" ){
-                              free_places++;
-                          } else counter++;
-                      }
-                      for (int m4 = 27; m4 < 30; m4++){
-                          if (arr[i][m4] != *"X" ){
-                              free_places++;
-                          } else counter++;
-                      }
-                      }
+              for (int j = 3; j < 9; j++){
+                       if (arr[i][j] == *"X" ){
+                           counter++;
+                       }
                   }
+              for (int j = 11; j < 17; j++){
+                       if (arr[i][j] == *"X" ){
+                           counter++;
+                       }
+                   }
+              for (int j = 19; j < 25; j++){
+                       if (arr[i][j] == *"X" ){
+                           counter++;
+                       }
+                   }
+              for (int j = 27; j < 30; j++){
+                       if (arr[i][j] == *"X" ){
+                           counter++;
+                       }
+                   }
               }
-     if (counter > 1){
-         std::cout << "-1" << std::endl;
-     }
-     if (counter < 2){
+         free_places = 44 - counter;
          std::cout << free_places << std::endl;
-     }
+         std::cout << counter << std::endl;
 }
