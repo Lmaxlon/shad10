@@ -1,85 +1,60 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
 
 
 int main()
 {
-     int coach;//количество вагонов
-     int num = 3; //количество строк
-     std::cin >> coach;
-     int free_places = 0; //счетчик количества свободных мест
-     int counter1 = 0;//счетчик занятых мест
-     int counter2 = 0;
-     int counter3 = 0;
-     int counter4 = 0;
+     int coach; //количество вагонов
+     cin >> coach;
+     int num = 0;
+     int step = 0;
+     num = 3 * coach; //количество строчек всего
+     int free_places = 0;//счетчик свободных мест
+     int count = 0; //счетчик занятых мест
      char arr[num][30];
-     int huyna = num * coach;
-     bool flag;
-     for ( int i = 0; i < huyna; i++){
+     vector <int> memory;
+     for (int i = 0; i < num; i++){
          for (int j = 0; j < 30; j++){
-             std::cin >> arr[i][j];
+             cin >> arr[i][j];
          }
      }
-     /*for ( int i = 0; i < num; i++){
-              for (int j = 0; j < column; j++){
-                  std::cout << arr[i][j];
-              }
-              std::cout << std::endl;//типа вывод для проверки
-          }*/
-          //3-9 11-17 19-25 27-30
-     for ( int i = 0; i < num; i++){
-              for (int j = 3; j < 9; j++){
-                       if (counter1 > 1){
-                           flag = true;
-                           counter1 = 0;
-                       }
-                       if (arr[i][j] == *"X" ){
-                           counter1++;
-                       }
-                  }
-              for (int j = 11; j < 17; j++){
-                  if (counter2 > 1){
-                     flag = true;
-                     counter2 = 0;
-                  }
-                       if (arr[i][j] == *"X" ){
-                           counter2++;
-                       }
-                   }
-              for (int j = 19; j < 25; j++){
-                  if (counter3 > 1){
-                      flag = true;
-                      counter3 = 0;
-              }
-                       if (arr[i][j] == *"X" ){
-                           counter3++;
-                       }
-                   }
-              for (int j = 27; j < 30; j++){
-                  if (counter4 > 1){
-                      flag = true;
-                      counter4 = 0;
-                  }
-                       if (arr[i][j] == *"X" ){
-                           counter4++;
-                       }
-                   }
-              counter1 = 0;//счетчик занятых мест
-              counter2 = 0;
-              counter3 = 0;
-              counter4 = 0;
-              }
-         for (int i = 0; i < num; i++){
-             for (int j = 0; j < 30; j++){
-                 if ( arr[i][j] == *"#") free_places++;
+     for(int i = 0; i < num; i++){
+         for (int j = 3; j < 9; i++){
+             if(arr[i][j] == *"#"){
+                 free_places++;
              }
-         }
-         if (flag == true) std::cout << "-1" << std::endl;
-         if (flag == false) std::cout << free_places << std::endl;
-         free_places = 0;
-              counter1 = 0;//счетчик занятых мест
-              counter2 = 0;
-              counter3 = 0;
-              counter4 = 0;
+             for(int k = 1; k < 7; k++){
+                     int calc;
+                     calc = k - 1;
+                     step = 0;
+                     for(int m = 3 + step; m < 9 - 5 - calc + step; m++){
+                         if(arr[i][m] == *"X"){
+                             if (find(memory.begin(), memory.end(), m) != memory.end() ){
+                                    step++;
+                             }
+                             else {
+                                count++;
+                                step++;
+                                memory.push_back(m);
+                             }
+                         }
+                         if(step == 4 - calc){
+                             break;
+                         }
+                         memory.clear();
+                     }
+                     if (count > 1){
+                         cout << "-1";
+                     }
+                     if (count < 2){
+                         cout << free_places;
+                     }
+                     }
+                 }
+             }
 }
 //#..#X###X..#X####..#X#X##..##X
 //..............................
